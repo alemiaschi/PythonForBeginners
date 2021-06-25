@@ -1,0 +1,44 @@
+RICERCA:
+
+- tutte le vocali minuscole o maiuscole 
+	SOLUZIONE: r'[aeioouAEIOU]'
+
+- le parole che iniziano per consonante
+	SOLUZIONE: r'\b[qwrtypsdfghjklzxcvbnm]\w*\b|\b[QWRTYPSDFGHJKLZXCVBNM]\w*\b'
+
+- le parole che terminano con un segno di punteggiatura
+	SOLUZIONE: r'\w+[,;.:?!]\s'
+
+- le parole che iniziano per “per” o “pr”
+	SOLUZIONE: r'\bpe?r\w*\b'
+
+- il passato prossimo del verbo “vedere”
+	SOLUZIONE 1: r'\sho\svisto|\shai\svisto...'
+	SOLUZIONE 2: r'(?:[hH](?:o|ai|a|anno)|[Aa](?:bbiamo|vete))\svisto'
+
+- le date dove giorno, mese e anno sono espressi da numeri
+	SOLUZIONE 1: r'\s\d\d[-/]\d\d[-/]\d\d\d\d'
+	SOLUZIONE 2: r'\s[0-3]?\d[-/][01]?\d[-/][0-2]?\d?\d?\d\s'
+
+- I numeri formati da una cifra pari e una dispari alternata
+	SOLUZIONE: r'(?:[2468][13579])+'
+
+- Le parole in fondo ad una linea di testo che terminano per ”sto” o per “sito”
+	SOLUZIONE: r'\b\w*si?to$'
+
+SOSTITUZIONE:
+
+- verticalizzare le parole, in modo che ogni parola venga scritta su una riga diversa
+	SOLUZIONE: r' ' con r'\n'
+
+- trasformare tutte le parole che iniziano per vocale e che contengono almeno 4 caratteri con la stringa “WORD”
+	SOLUZIONE: r'\b[AEIOUaeiou]\w{3,}\b' con r'WORD'
+
+- trasformare i numeri invertendo la prima cifra con l’ultima (es. 123456 in 623451)
+	SOLUZIONE: r'(\d)(\d*)(\d)' con r'\3\2\1'
+	
+- nelle date con il mese scritto in lettere, sostituire spazi con underscore (es. 27 maggio 2021 diventa 27_maggio_2021)
+	SOLUZIONE: r'(\d\d) (gennaio|febbraio|marzo) (\d\d\d\d)' con r'\1_\2_\3'
+
+- trasformare tutte le parole del testo che iniziano per vocale invertendo il primo carattere con l’ultimo (es. esercizio diventa osercizie)
+	SOLUZIONE: r'([AEIOUaeiou])(\w*)(\w)' con r'\3\2\1'

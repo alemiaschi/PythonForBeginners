@@ -1,0 +1,9 @@
+import re
+
+def main():
+    stringa = input("Inserisci una stringa: ")
+    match = re.findall(r'[aeiouAEIOU]', stringa)
+    for match in stringa:
+        print(match)
+
+main()
